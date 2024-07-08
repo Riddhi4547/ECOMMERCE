@@ -1,6 +1,11 @@
+import HeroSection from "../../components/heroSection/HeroSection"
+import Layout from "../../components/layout/Layout"
+
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <Layout>
+         <HeroSection/>
+    </Layout>
   )
 }
 
