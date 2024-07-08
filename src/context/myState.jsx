@@ -1,13 +1,18 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import MyContext from "./myContext"
 
 const MyState = ({children}) => {
-    const name = "Riddhi Kesharwani";
+    
+    const [loading, setLoading] = useState(false);
   return (
-    <MyContext.Provider value={name}>
-        {children}
+    <MyContext.Provider value={{
+      loading,
+      setLoading
+    }}>
+      {children}
     </MyContext.Provider>
-  )
+  );
 }
 
-export default MyState
+export default MyState;

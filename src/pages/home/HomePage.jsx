@@ -5,11 +5,11 @@ import HomePageProductCard from "../../components/homePageProductCard/HomePagePr
 import Layout from "../../components/layout/Layout"
 import Testimonial from "../../components/testimonial/Testimonial"
 import Track from "../../components/track/Track"
-import myContext from "../../context/myContext"
+import Loader from "../../components/loader/Loader"
+
 
 const HomePage = () => {
-  const context = useContext(myContext);
-  const name = context;
+  
   return (
     <Layout>
          <HeroSection/>
@@ -17,7 +17,7 @@ const HomePage = () => {
          <HomePageProductCard/>
          <Track/>
          <Testimonial/>
-         {name}
+        <Loader/>
     </Layout>
   )
 }
