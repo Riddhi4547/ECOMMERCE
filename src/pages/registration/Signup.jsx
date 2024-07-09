@@ -4,7 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import myContext from "../../context/myContext";
 import toast from "react-hot-toast";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/FirebaseConfig";
+import { auth, fireDB } from "../../firebase/FirebaseConfig";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
+import Loader from "../../components/loader/Loader";
 
 const Signup = () => {
     const context = useContext(myContext);
@@ -31,13 +33,52 @@ const Signup = () => {
 
         try {
             const users = await createUserWithEmailAndPassword(auth, userSignup.email,userSignup.password);
+
+            //create user object
+            const user = {
+                name: userSignup.name,
+                email: users.user.email,
+                uid: users.user.uid,
+                role: userSignup.role,
+                time: Timestamp.now(),
+                date: new Date().toLocaleString(
+                    "en-US",
+                    {
+                        month: "short",
+                        day: "2-digit",
+                        year: "numeric",
+                    }
+                )
+            }
+
+            //create user refrence
+            const userReference = collection(fireDB, "user");
+
+            //Add user Detail
+            addDoc(userReference, user);
+
+            setUserSignup({
+                name: "",
+                email: "",
+                password: ""
+            })
+
+            toast.success("Signup Sucessfully");
+
+            setLoading(false);
+
+            navigate('/login');
+
         } catch (error) {
             console.log(error);
+            setLoading(false);
         }
     }
     return (
         <div className='flex justify-center items-center h-screen'>
-            {/* Login Form  */}
+            {/* Loader Component */}
+            {loading && <Loader/>}
+            {/* Signup Form  */}
             <div className="login_Form bg-pink-50 px-1 lg:px-8 py-6 border border-pink-100 rounded-xl shadow-md">
 
                 {/* Top Heading  */}
