@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { useContext } from "react"
 import Category from "../../components/category/Category"
 import HeroSection from "../../components/heroSection/HeroSection"
