@@ -1,3 +1,6 @@
+import { Timestamp } from "firebase/firestore";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const categoryList = [
     {
@@ -29,6 +32,29 @@ const categoryList = [
 const UpdateProductPage = () => {
     const context = useContext(myContext);
     const { loading, setLoading, getAllProductFunction } = context;
+
+    // navigate 
+    const navigate = useNavigate();
+    const { id } = useParams()
+    console.log(id);
+
+    // product state
+    const [product, setProduct] = useState({
+        title: "",
+        price: "",
+        productImageUrl: "",
+        category: "",
+        description: "",
+        time: Timestamp.now(),
+        date: new Date().toLocaleString(
+            "en-US",
+            {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+            }
+        )
+    });
 
     return (
         <div>
