@@ -31,6 +31,7 @@ const ProductInfo = () => {
     //console.log(product);
     useEffect(() => {
         getProductData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
         <Layout>
