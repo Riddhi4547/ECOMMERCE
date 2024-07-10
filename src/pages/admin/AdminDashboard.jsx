@@ -8,8 +8,8 @@ import myContext from "../../context/myContext";
 const AdminDashboard = () => {
     const user = JSON.parse(localStorage.getItem('users'));
     const context = useContext(myContext);
-    const {getAllProduct} = context;
-    console.log(getAllProduct.length);
+    const {getAllProduct, getAllOrder} = context;
+   // console.log(getAllProduct.length);
 
     return (
         <div>
@@ -114,7 +114,7 @@ const AdminDashboard = () => {
                                         <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
                                     </svg>
                                 </div>
-                                <h2 className="title-font font-medium text-3xl text-pink-400 fonts1" >10</h2>
+                                <h2 className="title-font font-medium text-3xl text-pink-400 fonts1" >{getAllOrder.length}</h2>
                                 <p className=" text-pink-500  font-bold" >Total Order</p>
                             </div>
                         </Tab>
