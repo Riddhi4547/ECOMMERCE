@@ -5,6 +5,7 @@ import {
   decrementQuantity,
   deleteFromCart,
   incrementQuantity,
+  clearCart
 } from "../../redux/cartSlice";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
@@ -94,6 +95,7 @@ const CartPage = () => {
         pincode: "",
         mobileNumber: "",
       });
+      dispatch(clearCart()); // Clear the cart
       toast.success("Order Placed Successfull");
     } catch (error) {
       console.log(error);
